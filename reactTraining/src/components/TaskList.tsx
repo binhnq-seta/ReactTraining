@@ -1,53 +1,29 @@
-import type { Task } from "../types/Task";
-import { Button } from "primereact/button";
-import { Checkbox } from "primereact/checkbox";
-import { Card } from "primereact/card";
+import type { Task } from "../App";
 
-interface Props {
-    tasks: Task[];
-    onToggle: (id: number) => void;
-    onDelete: (id: number) => void;
+interface TaskListProps {
+  tasks: Task[];
+  onToggle: (id: number) => void;
+  onDelete: (id: number) => void;
 }
 
-export default function TaskList({ tasks, onToggle, onDelete }: Props) {
-    if (tasks.length === 0)
-        return <p className="p-text-center p-mt-3">No tasks found.</p>;
+const TaskList = ({ tasks, onToggle, onDelete }: TaskListProps) => {
+  if (tasks.length === 0) return <p className="empty">No tasks to show.</p>;
 
-    return (
-        <div className="p-mt-4">
-            {tasks.map((task) => (
-                <Card key={task.id} className="p-mb-3 task-card">
-                    <div className="p-d-flex p-jc-between p-ai-center">
-                        <div className="task-content">
-                            <Checkbox
-                                checked={task.completed}
-                                onChange={() => onToggle(task.id)}
-                            />
-                            <div>
-                                <div
-                                    style={{
-                                        textDecoration: task.completed ? "line-through" : "none",
-                                        fontWeight: "bold",
-                                    }}
-                                >
-                                    {task.title}
-                                </div>
-                                {task.description && (
-                                    <small style={{ color: "#666" }}>{task.description}</small>
-                                )}
-                            </div>
-                        </div>
+  return (
+    <ul className="task-list">
+      {tasks.map((task) => (
+        <li key={task.id} className={task.completed ? "completed" : ""}>
+          <div onClick={() => onToggle(task.id)} className="task-info">
+            <h3>{task.title}</h3>
+            {task.description && <p>{task.description}</p>}
+          </div>
+          <button className="delete-btn" onClick={() => onDelete(task.id)}>
+            ✕
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-                        <Button
-                            icon="pi pi-trash"
-                            rounded
-                            text
-                            severity="danger"
-                            onClick={() => onDelete(task.id)}
-                        />
-                    </div>
-                </Card>
-            ))}
-        </div>
-    );
-}
+export default TaskList;

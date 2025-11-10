@@ -1,22 +1,21 @@
-import type { Task } from "../types/Task";
-import { ProgressBar } from "primereact/progressbar";
+import type { Task } from "../App";
 
-interface Props {
+interface TaskStatsProps {
   tasks: Task[];
 }
 
-export default function TaskStats({ tasks }: Props) {
+const TaskStats = ({ tasks }: TaskStatsProps) => {
   const total = tasks.length;
   const completed = tasks.filter(t => t.completed).length;
   const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
 
   return (
-    <div className="p-mt-4">
-      <h3>Progress</h3>
-      <ProgressBar value={percent} showValue />
-      <p className="p-text-center p-mt-2">
-        {completed}/{total} tasks completed
-      </p>
+    <div className="stats">
+      <p>Total: {total}</p>
+      <p>Completed: {completed}</p>
+      <p>Progress: {percent}%</p>
     </div>
   );
-}
+};
+
+export default TaskStats;

@@ -1,45 +1,79 @@
 .app-container {
-  max-width: 900px;
-  width: 95%;
-  margin: 2rem auto;
-  padding: 1rem;
-  border-radius: 1rem;
-  background-color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 h1 {
   text-align: center;
-  color: #333;
+  margin-bottom: 20px;
 }
 
-.filters {
+.task-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.task-input input,
+.task-input textarea {
+  width: 100%;
+  padding: 8px;
+}
+
+.task-input button {
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.filter-buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin: 1rem 0;
-  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
-.filters button {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 5px;
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-list li {
+  display: flex;
+  justify-content: space-between;
+  background: #f8f8f8;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 6px;
   cursor: pointer;
-  background: #eee;
 }
 
-.filters button.active {
-  background-color: #0078d7;
-  color: #fff;
+.task-list li.completed h3,
+.task-list li.completed p {
+  text-decoration: line-through;
+  color: #888;
 }
 
-/* Ensure the main card and content adapt on small screens */
-.card {
-  padding: 1.25rem;
+.delete-btn {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-@media (max-width: 600px) {
-  .app-container { padding: 0.75rem; }
-  .card { padding: 1rem; }
+.stats {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.empty {
+  text-align: center;
+  color: #777;
 }

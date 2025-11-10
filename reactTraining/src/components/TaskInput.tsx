@@ -1,47 +1,41 @@
 import { useState } from "react";
 import { InputText } from "primereact/inputtext";
-import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
+import { InputTextarea } from "primereact/inputtextarea";
 
-interface Props {
-    onAdd: (title: string, description: string) => void;
+interface TaskInputProps {
+  onAdd: (title: string, description: string) => void;
 }
 
-export default function TaskInput({ onAdd }: Props) {
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
+const TaskInput = ({ onAdd }: TaskInputProps) => {
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!title.trim()) return;
-        onAdd(title, description);
-        setTitle("");
-        setDescription("");
-    };
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onAdd(title, desc);
+    setTitle("");
+    setDesc("");
+  };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <div className="grid p-fluid p-ai-center p-jc-between">
-                <div className="col-12 md:col-8">
-                    <InputText
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        placeholder="Task title"
-                        className="p-mb-2"
-                    />
-                    <InputTextarea
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        placeholder="Description (optional)"
-                        rows={3}
-                        className="p-mb-2"
-                    />
-                </div>
+  return (
+    <form onSubmit={handleSubmit} className="task-input">
+      <InputText
+        type="text"
+        placeholder="Task title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <InputTextarea
+        placeholder="Description (optional)"
+        value={desc}
+        onChange={(e) => setDesc(e.target.value)}
+        rows={3}
+        autoResize
+      />
+      <Button label="Add" />
+    </form>
+  );
+};
 
-                <div className="col-12 md:col-4">
-                    <Button type="submit" label="Add Task" icon="pi pi-plus" severity="success" />
-                </div>
-            </div>
-        </form>
-    );
-}
+export default TaskInput;
