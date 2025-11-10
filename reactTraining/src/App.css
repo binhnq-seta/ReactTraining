@@ -1,0 +1,45 @@
+.app-container {
+  max-width: 900px;
+  width: 95%;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.filters button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #eee;
+}
+
+.filters button.active {
+  background-color: #0078d7;
+  color: #fff;
+}
+
+/* Ensure the main card and content adapt on small screens */
+.card {
+  padding: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .app-container { padding: 0.75rem; }
+  .card { padding: 1rem; }
+}

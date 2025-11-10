@@ -1,0 +1,37 @@
+.card {
+    background: var(--surface-card);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* Task card tweaks and responsive behavior */
+.task-card {
+    padding: 0.75rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.task-card .task-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Make PrimeReact form controls full-width in fluid forms */
+.p-fluid .p-inputtext,
+.p-fluid .p-inputtextarea,
+.p-fluid .p-button {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (min-width: 600px) {
+    .task-card {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
